@@ -4,10 +4,12 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.models.param import Param
+from airflow.models import Variable
 
-
-BASE_DATA_COLLECTION_PATH = "/opt/airflow/data_collection/"
-BASE_DATA_LAKE_PATH = "/opt/airflow/data_lake/"
+BASE_DATA_COLLECTION_PATH = Variable.get(
+    "BASE_DATA_COLLECTION_PATH"
+)
+BASE_DATA_LAKE_PATH = Variable.get("BASE_DATA_LAKE_PATH")
 
 
 # A DAG represents a workflow, a collection of tasks
@@ -22,8 +24,10 @@ with DAG(
         "stock_collect_mode": Param(
             "normal", type="string", enum=["normal", "fill_missing"]
         ),
-        "start_date_missing_values": Param(None, type=["string", "null"], format="date"),
-        "end_date_missing_values": Param(None, type=["string", "null"], format="date"),
+        "start_date_missing_values": Param(
+            None, type=["null", "string"], format="date"
+        ),
+        "end_date_missing_values": Param(None, type=["null", "string"], format="date"),
     },
     is_paused_upon_creation=True,
     render_template_as_native_obj=True,
@@ -39,7 +43,7 @@ with DAG(
         env={
             "DATA_LAKE_PATH": BASE_DATA_LAKE_PATH,
             "OPEN_LIBRARY_IDS": "{{params.open_library_ids|join(',')}}",
-            "EXECUTION_DATE": "{{ logical_date | ds }}",
+            "EXECUTION_DATE": "{{ execution_date | ds }}",
         },
     )
 
@@ -53,10 +57,11 @@ with DAG(
     collect_stocks_task = BashOperator(
         task_id="collect_raw_stocks",
         bash_command=f"python3 {BASE_DATA_COLLECTION_PATH}collect_stocks.py --data_lake_path $DATA_LAKE_PATH --stock_tickers $STOCK_TICKERS --execution_date $EXECUTION_DATE --stock_collect_mode $STOCK_COLLECT_MODE --start_date_missing_values $START_DATE_MISSING_VALUES --end_date_missing_values $END_DATE_MISSING_VALUES",
+        # bash_command="echo $START_DATE_MISSING_VALUES",
         env={
             "DATA_LAKE_PATH": BASE_DATA_LAKE_PATH,
             "STOCK_TICKERS": "{{params.stock_tickers|join(',')}}",
-            "EXECUTION_DATE": "{{ logical_date | ds }}",
+            "EXECUTION_DATE": "{{ execution_date | ds }}",
             "STOCK_COLLECT_MODE": "{{ params.stock_collect_mode }}",
             "START_DATE_MISSING_VALUES": "{{ params.start_date_missing_values }}",
             "END_DATE_MISSING_VALUES": "{{ params.end_date_missing_values }}",
