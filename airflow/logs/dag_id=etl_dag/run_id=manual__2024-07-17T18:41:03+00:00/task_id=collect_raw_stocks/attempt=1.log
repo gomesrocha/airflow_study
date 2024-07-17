@@ -1,0 +1,47 @@
+[2024-07-17T18:41:42.578+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.collect_raw_stocks manual__2024-07-17T18:41:03+00:00 [queued]>
+[2024-07-17T18:41:42.618+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.collect_raw_stocks manual__2024-07-17T18:41:03+00:00 [queued]>
+[2024-07-17T18:41:42.619+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-17T18:41:42.674+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): collect_raw_stocks> on 2024-07-17 18:41:03+00:00
+[2024-07-17T18:41:42.696+0000] {standard_task_runner.py:57} INFO - Started process 383 to run task
+[2024-07-17T18:41:42.724+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'collect_raw_stocks', 'manual__2024-07-17T18:41:03+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/my_first_dag.py', '--cfg-path', '/tmp/tmp73sl7qs4']
+[2024-07-17T18:41:42.727+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask collect_raw_stocks
+[2024-07-17T18:41:43.250+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_dag.collect_raw_stocks manual__2024-07-17T18:41:03+00:00 [running]> on host cbbb95ef831d
+[2024-07-17T18:41:44.037+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='collect_raw_stocks' AIRFLOW_CTX_EXECUTION_DATE='2024-07-17T18:41:03+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-07-17T18:41:03+00:00'
+[2024-07-17T18:41:44.099+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-07-17T18:41:44.124+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python3 /opt/***/data_collection/collect_stocks.py --data_lake_path $DATA_LAKE_PATH --stock_tickers $STOCK_TICKERS --execution_date $EXECUTION_DATE']
+[2024-07-17T18:41:44.258+0000] {subprocess.py:86} INFO - Output:
+[2024-07-17T18:41:57.573+0000] {subprocess.py:93} INFO - Namespace(data_lake_path='/opt/***/data_lake/', stock_tickers='AAPL,MSFT,AMZN,META,NFLX,GOOG', execution_date='2024-07-17')
+[2024-07-17T18:41:57.574+0000] {subprocess.py:93} INFO -                             Open        High  ...  Dividends  Stock Splits
+[2024-07-17T18:41:57.574+0000] {subprocess.py:93} INFO - Date                                          ...
+[2024-07-17T18:41:57.575+0000] {subprocess.py:93} INFO - 2024-07-16 00:00:00-04:00  235.0  236.270004  ...        0.0           0.0
+[2024-07-17T18:41:57.575+0000] {subprocess.py:93} INFO - 
+[2024-07-17T18:41:57.575+0000] {subprocess.py:93} INFO - [1 rows x 7 columns]
+[2024-07-17T18:41:57.575+0000] {subprocess.py:93} INFO -                                  Open        High  ...  Dividends  Stock Splits
+[2024-07-17T18:41:57.576+0000] {subprocess.py:93} INFO - Date                                               ...
+[2024-07-17T18:41:57.576+0000] {subprocess.py:93} INFO - 2024-07-16 00:00:00-04:00  454.220001  454.299988  ...        0.0           0.0
+[2024-07-17T18:41:57.576+0000] {subprocess.py:93} INFO - 
+[2024-07-17T18:41:57.577+0000] {subprocess.py:93} INFO - [1 rows x 7 columns]
+[2024-07-17T18:41:57.577+0000] {subprocess.py:93} INFO -                                  Open        High  ...  Dividends  Stock Splits
+[2024-07-17T18:41:57.577+0000] {subprocess.py:93} INFO - Date                                               ...
+[2024-07-17T18:41:57.577+0000] {subprocess.py:93} INFO - 2024-07-16 00:00:00-04:00  195.589996  196.619995  ...        0.0           0.0
+[2024-07-17T18:41:57.578+0000] {subprocess.py:93} INFO - 
+[2024-07-17T18:41:57.578+0000] {subprocess.py:93} INFO - [1 rows x 7 columns]
+[2024-07-17T18:41:57.578+0000] {subprocess.py:93} INFO -                             Open       High  ...  Dividends  Stock Splits
+[2024-07-17T18:41:57.579+0000] {subprocess.py:93} INFO - Date                                         ...
+[2024-07-17T18:41:57.579+0000] {subprocess.py:93} INFO - 2024-07-16 00:00:00-04:00  501.5  503.94989  ...        0.0           0.0
+[2024-07-17T18:41:57.579+0000] {subprocess.py:93} INFO - 
+[2024-07-17T18:41:57.580+0000] {subprocess.py:93} INFO - [1 rows x 7 columns]
+[2024-07-17T18:41:57.580+0000] {subprocess.py:93} INFO -                                  Open        High  ...  Dividends  Stock Splits
+[2024-07-17T18:41:57.580+0000] {subprocess.py:93} INFO - Date                                               ...
+[2024-07-17T18:41:57.581+0000] {subprocess.py:93} INFO - 2024-07-16 00:00:00-04:00  661.799988  663.674988  ...        0.0           0.0
+[2024-07-17T18:41:57.581+0000] {subprocess.py:93} INFO - 
+[2024-07-17T18:41:57.581+0000] {subprocess.py:93} INFO - [1 rows x 7 columns]
+[2024-07-17T18:41:57.582+0000] {subprocess.py:93} INFO -                                  Open        High  ...  Dividends  Stock Splits
+[2024-07-17T18:41:57.582+0000] {subprocess.py:93} INFO - Date                                               ...
+[2024-07-17T18:41:57.582+0000] {subprocess.py:93} INFO - 2024-07-16 00:00:00-04:00  188.960007  190.339996  ...        0.0           0.0
+[2024-07-17T18:41:57.583+0000] {subprocess.py:93} INFO - 
+[2024-07-17T18:41:57.583+0000] {subprocess.py:93} INFO - [1 rows x 7 columns]
+[2024-07-17T18:41:57.760+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-07-17T18:41:57.800+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=collect_raw_stocks, execution_date=20240717T184103, start_date=20240717T184142, end_date=20240717T184157
+[2024-07-17T18:41:57.862+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-17T18:41:57.891+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check

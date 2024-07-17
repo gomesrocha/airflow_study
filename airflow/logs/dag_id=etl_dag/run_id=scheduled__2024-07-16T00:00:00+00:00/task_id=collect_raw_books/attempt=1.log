@@ -1,0 +1,26 @@
+[2024-07-17T18:41:42.735+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.collect_raw_books scheduled__2024-07-16T00:00:00+00:00 [queued]>
+[2024-07-17T18:41:42.821+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.collect_raw_books scheduled__2024-07-16T00:00:00+00:00 [queued]>
+[2024-07-17T18:41:42.822+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-17T18:41:43.007+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): collect_raw_books> on 2024-07-16 00:00:00+00:00
+[2024-07-17T18:41:43.032+0000] {standard_task_runner.py:57} INFO - Started process 385 to run task
+[2024-07-17T18:41:43.108+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'collect_raw_books', 'scheduled__2024-07-16T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/my_first_dag.py', '--cfg-path', '/tmp/tmpnuumyhxp']
+[2024-07-17T18:41:43.120+0000] {standard_task_runner.py:85} INFO - Job 6: Subtask collect_raw_books
+[2024-07-17T18:41:43.634+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_dag.collect_raw_books scheduled__2024-07-16T00:00:00+00:00 [running]> on host cbbb95ef831d
+[2024-07-17T18:41:44.795+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='collect_raw_books' AIRFLOW_CTX_EXECUTION_DATE='2024-07-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-16T00:00:00+00:00'
+[2024-07-17T18:41:44.797+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-07-17T18:41:44.819+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python3 /opt/***/data_collection/collect_books.py --data_lake_path $DATA_LAKE_PATH --open_library_ids $OPEN_LIBRARY_IDS --execution_date $EXECUTION_DATE']
+[2024-07-17T18:41:44.868+0000] {subprocess.py:86} INFO - Output:
+[2024-07-17T18:41:53.353+0000] {subprocess.py:93} INFO - usage: collect_books.py [-h] --data_lake_path DATA_LAKE_PATH
+[2024-07-17T18:41:53.354+0000] {subprocess.py:93} INFO -                         --open_library_ids OPEN_LIBRARY_IDS --execution_date
+[2024-07-17T18:41:53.367+0000] {subprocess.py:93} INFO -                         EXECUTION_DATE
+[2024-07-17T18:41:53.370+0000] {subprocess.py:93} INFO - collect_books.py: error: argument --open_library_ids: expected one argument
+[2024-07-17T18:41:54.782+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2024-07-17T18:41:54.812+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2024-07-17T18:41:54.844+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=etl_dag, task_id=collect_raw_books, execution_date=20240716T000000, start_date=20240717T184142, end_date=20240717T184154
+[2024-07-17T18:41:54.948+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 6 for task collect_raw_books (Bash command failed. The command returned a non-zero exit code 2.; 385)
+[2024-07-17T18:41:55.022+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-17T18:41:55.139+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

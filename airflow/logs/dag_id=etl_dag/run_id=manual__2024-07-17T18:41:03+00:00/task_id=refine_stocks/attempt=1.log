@@ -1,0 +1,26 @@
+[2024-07-17T18:41:58.673+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.refine_stocks manual__2024-07-17T18:41:03+00:00 [queued]>
+[2024-07-17T18:41:58.702+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.refine_stocks manual__2024-07-17T18:41:03+00:00 [queued]>
+[2024-07-17T18:41:58.704+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-17T18:41:58.735+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): refine_stocks> on 2024-07-17 18:41:03+00:00
+[2024-07-17T18:41:58.744+0000] {standard_task_runner.py:57} INFO - Started process 401 to run task
+[2024-07-17T18:41:58.756+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'refine_stocks', 'manual__2024-07-17T18:41:03+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/my_first_dag.py', '--cfg-path', '/tmp/tmpplwt1ftk']
+[2024-07-17T18:41:58.763+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask refine_stocks
+[2024-07-17T18:41:58.889+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_dag.refine_stocks manual__2024-07-17T18:41:03+00:00 [running]> on host cbbb95ef831d
+[2024-07-17T18:41:59.011+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='refine_stocks' AIRFLOW_CTX_EXECUTION_DATE='2024-07-17T18:41:03+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-07-17T18:41:03+00:00'
+[2024-07-17T18:41:59.013+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-07-17T18:41:59.014+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python3 /opt/***/data_collection/treat_stocks.py --data_lake_path $DATA_LAKE_PATH']
+[2024-07-17T18:41:59.028+0000] {subprocess.py:86} INFO - Output:
+[2024-07-17T18:42:00.932+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2024-07-17T18:42:00.933+0000] {subprocess.py:93} INFO -   File "/opt/***/data_collection/treat_stocks.py", line 13, in <module>
+[2024-07-17T18:42:00.933+0000] {subprocess.py:93} INFO -     for file_name in os.listdir(BASE_RAW_CSV_STOCKS_PATH):
+[2024-07-17T18:42:00.934+0000] {subprocess.py:93} INFO - FileNotFoundError: [Errno 2] No such file or directory: '/usercode/data_lake/raw/csv/stocks/'
+[2024-07-17T18:42:01.080+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-07-17T18:42:01.101+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-07-17T18:42:01.115+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=etl_dag, task_id=refine_stocks, execution_date=20240717T184103, start_date=20240717T184158, end_date=20240717T184201
+[2024-07-17T18:42:01.157+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 7 for task refine_stocks (Bash command failed. The command returned a non-zero exit code 1.; 401)
+[2024-07-17T18:42:01.207+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-17T18:42:01.238+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

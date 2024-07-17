@@ -1,0 +1,25 @@
+[2024-07-17T18:41:42.570+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.collect_raw_stocks scheduled__2024-07-16T00:00:00+00:00 [queued]>
+[2024-07-17T18:41:42.619+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.collect_raw_stocks scheduled__2024-07-16T00:00:00+00:00 [queued]>
+[2024-07-17T18:41:42.620+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-17T18:41:42.673+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): collect_raw_stocks> on 2024-07-16 00:00:00+00:00
+[2024-07-17T18:41:42.698+0000] {standard_task_runner.py:57} INFO - Started process 382 to run task
+[2024-07-17T18:41:42.725+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'collect_raw_stocks', 'scheduled__2024-07-16T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/my_first_dag.py', '--cfg-path', '/tmp/tmp2683u4iv']
+[2024-07-17T18:41:42.755+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask collect_raw_stocks
+[2024-07-17T18:41:43.302+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_dag.collect_raw_stocks scheduled__2024-07-16T00:00:00+00:00 [running]> on host cbbb95ef831d
+[2024-07-17T18:41:44.014+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='collect_raw_stocks' AIRFLOW_CTX_EXECUTION_DATE='2024-07-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-16T00:00:00+00:00'
+[2024-07-17T18:41:44.082+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-07-17T18:41:44.084+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python3 /opt/***/data_collection/collect_stocks.py --data_lake_path $DATA_LAKE_PATH --stock_tickers $STOCK_TICKERS --execution_date $EXECUTION_DATE']
+[2024-07-17T18:41:44.193+0000] {subprocess.py:86} INFO - Output:
+[2024-07-17T18:41:55.768+0000] {subprocess.py:93} INFO - usage: collect_stocks.py [-h] --data_lake_path DATA_LAKE_PATH --stock_tickers
+[2024-07-17T18:41:55.769+0000] {subprocess.py:93} INFO -                          STOCK_TICKERS --execution_date EXECUTION_DATE
+[2024-07-17T18:41:55.769+0000] {subprocess.py:93} INFO - collect_stocks.py: error: argument --stock_tickers: expected one argument
+[2024-07-17T18:41:55.980+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2024-07-17T18:41:56.000+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2024-07-17T18:41:56.005+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=etl_dag, task_id=collect_raw_stocks, execution_date=20240716T000000, start_date=20240717T184142, end_date=20240717T184156
+[2024-07-17T18:41:56.025+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 4 for task collect_raw_stocks (Bash command failed. The command returned a non-zero exit code 2.; 382)
+[2024-07-17T18:41:56.038+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-07-17T18:41:56.078+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

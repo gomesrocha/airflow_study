@@ -1,0 +1,16 @@
+[2024-07-17T18:41:42.621+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.collect_raw_books manual__2024-07-17T18:41:03+00:00 [queued]>
+[2024-07-17T18:41:42.657+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.collect_raw_books manual__2024-07-17T18:41:03+00:00 [queued]>
+[2024-07-17T18:41:42.662+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-07-17T18:41:42.740+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): collect_raw_books> on 2024-07-17 18:41:03+00:00
+[2024-07-17T18:41:42.772+0000] {standard_task_runner.py:57} INFO - Started process 384 to run task
+[2024-07-17T18:41:42.847+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'collect_raw_books', 'manual__2024-07-17T18:41:03+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/my_first_dag.py', '--cfg-path', '/tmp/tmpe9qn11ki']
+[2024-07-17T18:41:42.850+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask collect_raw_books
+[2024-07-17T18:41:43.489+0000] {task_command.py:416} INFO - Running <TaskInstance: etl_dag.collect_raw_books manual__2024-07-17T18:41:03+00:00 [running]> on host cbbb95ef831d
+[2024-07-17T18:41:44.421+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='collect_raw_books' AIRFLOW_CTX_EXECUTION_DATE='2024-07-17T18:41:03+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-07-17T18:41:03+00:00'
+[2024-07-17T18:41:44.428+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-07-17T18:41:44.429+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'python3 /opt/***/data_collection/collect_books.py --data_lake_path $DATA_LAKE_PATH --open_library_ids $OPEN_LIBRARY_IDS --execution_date $EXECUTION_DATE']
+[2024-07-17T18:41:44.560+0000] {subprocess.py:86} INFO - Output:
+[2024-07-17T18:41:58.665+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-07-17T18:41:58.721+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=collect_raw_books, execution_date=20240717T184103, start_date=20240717T184142, end_date=20240717T184158
+[2024-07-17T18:41:58.784+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-07-17T18:41:58.833+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check
